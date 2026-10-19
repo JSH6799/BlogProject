@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+:root { /* 스타일시트 선언문. 변수 선언하듯이 선언할 수 있음 */
+		/* 공통으로 사용하는 css가 있을 경우 사용됨 -> 한 번만 코딩해두면 되기 때문 */
+	--color-primary : #3b6ff2;
+	--color-primary-dark: #2952c8;
+    --color-text: #222;
+    --color-text-light: #777;
+    --color-border: #e2e2e2;
+    --color-bg: #fafafa;
+    --header-height: 64px;
+}
+
+* {margin:0; padding:0; box-sizing:border-box;}
+	/* width 값에 테두리선, 여백 값을 포함 시킨다 */
+a {text-decoration:none; color:#333;}
+	/* 밑줄 생략 */
+ul, ol {list-style:none;}
+	/* 목록 사용 안 함 */
+body {/*color:#333;*/
+	color:var(--color-text);	/* color-text에 저장된 값을 태그에 적용 */
+	background-color:var(--color-bg);
+	line-height:1.5;
+	/* line-height : 줄 간격. 숫자는 비율(배수) -> 기본 제공 줄간격의 입력된 숫자(배수)로 처리하라 */
+}
+
+.site-header {
+	/* 클래스 이름을 부여했을 때에는 .을 사용 */
+	height:var(--header-height);
+	border-bottom:1px solid var(--color-border);
+	background:#fff;
+	/* background : 배경색 */
+}
+.header-inline {width:1080px; height:100%; margin:0 auto; padding:0 20px;
+				display:flex; /* 부모에게 flex를 적용하면 자식 그룹이 가로 배치된다 */
+				align-items:center; /* 요소들을 세로 가운데 배치 */
+				justify-content:space-between; /* 그룹을 양쪽으로 정렬 */}
+				
+.gnb ul {	/* 하위 선택자 */
+	display:flex;
+	gap:30px;
+}
+
+.gnb a, .member-menu a {
+	font-weight:bold;	/* 진하게 */
+	display:inline-block;
+	/* 인라인요소 태그에 블럭 css 적용. 속성을 바꾸지는 않음 */
+	/* margin과 padding은 블럭요소 태그에만 적용 가능하기 때문에 inline-block을 사용 */
+	padding:8px 16px;
+	/* display:inline;
+	블럭 속성 태그를 인라인 속성으로 바꿔라
+	display:block; 
+	인라인 속성 태그를 블럭 속성으로 바꿔라*/
+}
+
+.gnb a:hover, .member-menu a:hover {
+	/* :hover : 마우스가 a 위에 올라왔을 때 */
+	color:#fff;
+	background:#f28a6d;
+	border-radius:8px;
+}
+
+/* -----footer 공통 스타일----- */
+.site-footer {
+	background:#fff; border:1px solid var(--color-border); color:var(--color-text);
+	font-size:14px; margin-top:60px; padding:30px 0; text-align:center;
+}
+.footer-sub {
+	margin-top:6px;
+}
+
+/* -----공통 버튼 css----- */
+.btn {
+	display:inline-block;
+	padding:10px 20px;
+	border-radius:6px;
+	font-size:14px;
+	border:none;
+	cursor:pointer;	/* 커서 손가락 모양으로 변경 */
+}
+.btn-primary {
+	background-color:var(--color-primary);
+	color:#fff;
+}
+.btn-primary:hover {
+	background-color:var(--color-primary-dark);
+	color:#fff;
+}
+.btn-outline {
+	background-color:#fff;
+	border:1px solid var(--color-border);
+	color:var(--color-text);
+}
+
+
+
+
+
+
+

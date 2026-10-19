@@ -1,0 +1,723 @@
+@charset "UTF-8";
+
+/*--------비주얼 영역---------*/
+.visual {
+	width:100%;
+	height:400px;
+	overflow:hidden;
+	/* 400px 넘치는 이미지를 안 보이게 한다 */
+	/* background:url(../images/visual.jpg) no-repeat center 30%; */
+	/* 배경이미지 삽입, 반복 안 함, x,y축 : 가운데 */
+	/* background-size:cover; */
+	/* 그룹영역 크기에 맞게 꽉 차게 보이게 한다 */
+	text-align:center;
+}
+.visual-img {
+	width:100%;
+	height:100%;
+}
+.visual-txt {
+	display:inline-block;
+	font-size:42px;
+	font-weight:bold;
+	color:#fff;
+	padding-top:160px;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.7);
+	/* 그림자 효과 : x축, y축, 거리, 색상, 투명도 */
+}
+
+/* -------컨텐츠 영역-------- */
+.content {
+	width:1080px;
+	margin:40px auto;
+	padding:0 20px;
+	display:flex;
+	gap:30px;
+}
+
+.content-box {
+	flex:1;	/* 두 개의 그룹이 남는 공간을 1:1로 나눠라 */
+	background:#fff;
+	border:1px solid var(--color-border);
+	border-radius:8px;
+	/* 모서리를 8px만큼 둥글게 */
+	padding:20px;
+}
+.sectionin-title {
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:16px;
+	padding-bottom:10px;
+	border-bottom:2px solid var(--color-primary);
+}
+
+/* 최신글 인기글 카드 목록 */
+.post-card-list {
+	display:flex;
+	flex-direction:column;
+	/* 세로로 보이게 해라. 가로로 보이게 할 때에는 row */
+	gap:14px;
+}
+.post-card {
+	display:flex;
+	align-items:center;
+	gap:12px;
+}
+
+.post-thumb {
+	width:64px;
+	height:64px;
+	object-fit:cover;
+	/* (위에서 작성한 박스 크기에 맞춰) 정해진 박스크기에 꽉 채운다 */
+	border-radius:6px;
+	flex-shrink:0;
+	/* 부모 공간이 부족해져도 나는 줄어들지 않는다 */
+	background-color:var(--color-border);
+}
+
+.post-title {
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* -----list.jsp css----- */
+.list-wrap {
+	width:1080px;
+	margin:40px auto;
+	padding:0 20px;
+}
+.list-top {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	margin-bottom:24px;
+}
+.search-form {
+	display:flex;
+	gap:8px;
+}
+.search-select {
+	padding:8px 12px;
+	border-radius:6px;
+	font-size:14px;
+	background-color:#fff;
+	color:var(--color-text);
+	border:1px solid var(--color-border);
+}
+.search-input {
+	width:220px;
+	padding:8px 12px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:14px;
+}
+
+/* 게시글 카드 그리드 */
+.board-grid {
+	display:grid;	/* 자식들을 행과 열로 정리해서 배치 = 바둑판 배열 */
+	grid-template-columns:repeat(3,1fr);
+	/* 3개의 열을 만드시오. fr은 fraction(비율)인데 3개의 컬럼을 똑같이 만들어라 */
+	gap:20px;
+}
+.board-card {
+	background:#fff;
+	border:1px solid var(--color-border);
+	border-radius:8px;
+	overflow:hidden;
+	transition:box-shadow 0.15s ease;	/* 애니메이션 효과. ease:속도 균등하게 */
+}
+.board-card:hover {
+	box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.board-thumb {
+	width:100%;
+	height:160px;
+	object-fit:cover;	/* 이미지를 박스에 빈틈없이 꽉 채워 */
+	background:var(--color-border);
+}
+.board-info {
+	padding:14px;
+}
+.board-title {
+	font-size:15px;
+	font-weight:600px;
+	margin-bottom:8px;
+	white-space:nowrap;	/* 글자가 길어도 줄 바꿈 하지 마 */
+	text-overflow:ellipsis; /* 글자가 영역을 넘치면 ...으로 표시 */
+}
+.board-meta {
+	font-size:13px;
+	color:var(--color-text-light);
+	margin-bottom:4px;
+}
+.board-stat {
+	font-size:12px;
+	color:var(--color-text-light);
+}
+
+/* -----페이지네이션----- */
+.pagination {
+	display:flex;
+	justify-content:center;
+	gap:8px;
+	margin-top:32px;
+}
+.page-num {
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	width:32px;
+	height:32px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:13px;
+	color:var(--color-text);
+}
+.page-num.active {
+	background:var(--color-primary);
+	color:#fff;
+	border-color:var(--color-primary);
+}
+.page-nav {
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	height:32px;
+	padding:0 32px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:13px;
+	color:var(--color-text);
+}
+.page-nav.disabled {
+	color:var(--color-text-light);
+	background-color:var(--color-bg);
+	pointer-events:none;	/* 클릭 방지 */
+}
+
+/* -----view.jsp css----- */
+.view-wrap {
+	max-width:760px; /* 최대 가로 폭 */
+	margin:40px auto;
+	padding:0 20px;
+}
+.view-header {
+	border-bottom:1px solid var(--color-border);
+	padding-bottom:16px;
+	margin-bottom:20px;
+}
+.view-title {
+	font-size:24px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.view-meta {
+	font-size:13px;
+}
+.view-image img{
+	max-width:100%;
+	max-height:400px;
+	object-fit:contain;
+	border-radius:8px;
+}
+.view-content {
+	font-size:15px;
+	line-height:1.8;
+	color:var(--color-text);
+	min-height:120px;
+	margin-bottom:24px;
+	white-space:pre-line;	/* 줄바꿈(\n) 그대로 화면에 반영 */
+}
+.view-actions {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:16px 0;
+	border-top:1px solid var(--color-border);
+	border-bottom:1px solid var(--color-border);
+	margin-bottom:30px;
+}
+.like-btn {
+	color:var(--color-text-light);
+}
+.like-btn.liked {
+	background:#ffeef0;
+	border-color:#ffee81;
+	color:#ff3b5c;
+}
+.view-actions-right {
+	display:flex;
+	gap:8px;
+}
+.reply-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+ 
+.reply-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+ 
+.reply-item {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+ 
+.reply-info {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+ 
+.reply-writer {
+    font-size: 13px;
+    font-weight: 600;
+}
+ 
+.reply-date {
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+ 
+.reply-content {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+ 
+.reply-btns {
+    display: flex;
+    gap: 10px;
+}
+ 
+.reply-btns button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: 0;
+}
+ 
+.reply-btns button:hover {
+    color: var(--color-primary);
+}
+ 
+.reply-form {
+    display: flex;
+    gap: 8px;
+}
+ 
+.reply-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+/* -----wrtie css----- */
+.write-wrap {
+	max-width:700px;
+	margin:40px auto;
+	padding:0 20px;
+}
+.write-page-title {
+	font-size:22px;
+	font-weight:700;
+	margin-bottom:24px;
+}
+.form-row {
+	margin-bottom:20px;
+}
+.form-row label {
+	display:block;
+	font-size:14px;
+	font-weight:600;
+	margin-bottom:8px;
+}
+.form-option {
+	font-weight:400;
+	color:var(--color-text-light);
+	font-size:12px;
+}
+.form-input, .form-textarea {
+	width:100%;
+	padding:10px 12px;
+	border: 1px solid var(--color-border);
+	border-radius:6px;
+	font-size:14px;
+}
+.form-textarea {
+	resize:vertical; /* 수직으로만 사이즈 변경 */
+	line-height:1.6;
+}
+
+/* -----이미지 업로드 영역----- */
+.image-upload-box {
+	display:flex;
+	align-items:center;
+	gap:16px;
+}
+.img-preview {
+	width:120px;
+	height:90px;
+	object-fit:cover;
+	border-radius:6px;
+	border: 1px solid var(--color-border);
+	background:var(--color-bg);
+}
+.image-upload-btns {
+	display:flex;
+	flex-direction:column;
+	gap:8px;
+}
+.file-input {
+	display:none;
+	/* 기본 파일 선택 버튼 숨김. label을 버튼처럼 사용 */
+}
+.file-label {
+	text-align:center;
+	cursor:pointer;
+}
+
+/* -----작성자 표시----- */
+.write-author {
+	font-size:14px;
+	color:var(--color-text-light);
+	padding:8px 0;
+}
+
+/* -----join css----- */
+.join-wrap {
+    max-width: 480px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.join-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 18px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 아이디 입력창 + 중복확인 버튼을 한 줄에 배치 */
+.id-check-group {
+    display: flex;
+    gap: 8px;
+}
+
+.id-check-group .form-input {
+    flex: 1;
+}
+
+.id-check-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* 아이디 중복확인 / 비밀번호 확인 결과 메시지 */
+.field-msg {
+    font-size: 12px;
+    margin-top: 6px;
+    min-height: 14px; /* 메시지 없을 때도 레이아웃이 흔들리지 않도록 */
+}
+
+.join-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.join-btns .btn {
+    flex: 1;
+    text-align: center;
+}
+
+/* --- 로그인 css --- */
+
+.login-wrap {
+    max-width: 380px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.login-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 16px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.login-submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.login-footer-link {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-top: 18px;
+}
+
+.login-footer-link a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ---   popular css -- */
+
+.popular-wrap {
+    max-width: 1080px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.popular-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.popular-sub {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+.popular-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.popular-card {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.popular-card a {
+    display: block;
+}
+
+.popular-thumb {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background-color: var(--color-border);
+}
+
+.popular-info {
+    padding: 14px;
+}
+
+.popular-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.popular-meta {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+/* 순위 배지: 카드 왼쪽 위에 겹쳐서 표시 */
+.rank-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* 1~3등은 색을 다르게 줘서 눈에 띄게 */
+.rank-1 { background-color: #ffb703; }
+.rank-2 { background-color: #adb5bd; }
+.rank-3 { background-color: #cd853f; }
+
+/*  ---   mypage css ---*/
+
+.mypage-wrap {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.mypage-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.mypage-sub {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+/* ---------- 탭 메뉴 ---------- */
+.mypage-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 20px;
+}
+
+.mypage-tab-btn {
+    padding: 10px 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    color: var(--color-text-light);
+    cursor: pointer;
+}
+
+.mypage-tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ---------- 탭 패널 ---------- */
+.mypage-panel {
+    display: none;
+}
+
+.mypage-panel.active {
+    display: block;
+}
+
+.mypage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 내 글 / 좋아요한 글: 썸네일 있는 아이템 */
+.mypage-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.mypage-item > a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.mypage-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.mypage-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.mypage-item-meta {
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+
+/* 내 댓글: 텍스트만 있는 아이템 */
+.mypage-reply-item {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+
+.mypage-reply-content {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.login-error-msg {
+	padding:20px 0;
+	color:#f00;
+	text-align:center;
+}
+
+
+
+
+
+
